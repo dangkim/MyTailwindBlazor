@@ -1,0 +1,43 @@
+﻿@using TailwindBlazor.Components.CustomIcons
+@inject NavigationManager NavigationManager
+
+<NavLink class="nav-link bg-gray-300" href="@($"/{Path}")" Match="NavLinkMatch.All">
+    <div class="relative mb-3 flex hover:cursor-pointer">
+    <li class="my-[3px] flex cursor-pointer items-center px-8">
+        <span class="@(ActiveRoute(Path) ? "font-bold text-brand-500 dark:text-white" : "font-medium text-gray-600" )">
+                @if (!string.IsNullOrEmpty(Icon))
+                {
+                    var iconEnum = Enum.Parse<IconName>(Icon);
+                    <SfIcon Name="iconEnum" />
+                }
+                else
+                {
+                    <DashIcon />
+                }
+        </span>
+        <p class="leading-1 ml-4 flex @(ActiveRoute(Path) ? "font-bold text-navy-700 dark:text-white" : "font-medium text-gray-600")">
+                @Name
+        </p>
+    </li>
+        @if (ActiveRoute(Path))
+        {
+        <div class="absolute right-0 top-px h-9 w-1 rounded-lg bg-brand-500 dark:bg-brand-400"></div>
+        }
+    </div>
+
+</NavLink>
+
+@code {
+
+    [Parameter]
+    public string? Path { get; set; }
+
+    [Parameter]
+    public string? Icon { get; set; }
+
+    [Parameter]
+    public string? Name { get; set; }
+
+
+    public bool ActiveRoute(string targetRoute) => NavigationHelper.IsRouteActive(NavigationManager, targetRoute);
+}

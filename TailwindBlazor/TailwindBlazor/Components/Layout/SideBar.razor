@@ -1,7 +1,9 @@
-﻿
+﻿@using TailwindBlazor.Client.Models
+@using TailwindBlazor.Components.Sidebar
+
 <div class="sm:none duration-175 linear fixed !z-50 flex min-h-full flex-col bg-white pb-10 shadow-2xl shadow-white/5 transition-all dark:!bg-navy-800 dark:text-white md:!z-50 lg:!z-50 xl:!z-0 -translate-x-96 xl:translate-x-0">
-    <span class="absolute right-4 top-4 block cursor-pointer xl:hidden">
-        X
+    <span class="absolute right-4 top-4 block cursor-pointer">
+        <SfIcon Name="IconName.Close" />
     </span>
 
     <div class="mx-[56px] mt-[50px] flex items-center">
@@ -12,11 +14,13 @@
     <div class="mb-7 mt-[58px] h-px bg-gray-300 dark:bg-white/30" />
 
     <ul class="mb-auto pt-1">
-        <li class="nav-item">
-            <NavLink class="nav-link bg-gray-300" href="/" Match="NavLinkMatch.All">Home</NavLink>
-        </li>
-        <li class="nav-item">
-            <NavLink class="nav-link" href="/History" Match="NavLinkMatch.All">History</NavLink>
-        </li>
+        <SidebarLinks Path="" Icon="Home" Name="Home" />
+        <SidebarLinks Path="History" Icon="Chart" Name="History" />
     </ul>
 </div>
+
+@code {
+
+    [Parameter]
+    public RouteItem? PopularMovie { get; set; }
+}

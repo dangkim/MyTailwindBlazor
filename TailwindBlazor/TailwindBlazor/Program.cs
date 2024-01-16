@@ -1,3 +1,4 @@
+using Syncfusion.Blazor;
 using TailwindBlazor.Client.Pages;
 using TailwindBlazor.Components;
 
@@ -8,7 +9,10 @@ builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents()
     .AddInteractiveWebAssemblyComponents();
 
+builder.Services.AddSyncfusionBlazor();
+
 var app = builder.Build();
+Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("Ngo9BigBOggjHTQxAR8/V1NAaF5cWWZCf1FpRmJGdld5fUVHYVZUTXxaS00DNHVRdkdnWX5fcnRdQmZeVkR1WkU=");
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
