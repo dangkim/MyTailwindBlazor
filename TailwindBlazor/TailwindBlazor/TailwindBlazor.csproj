@@ -9,7 +9,12 @@
   <ItemGroup>
     <ProjectReference Include="..\TailwindBlazor.Client\TailwindBlazor.Client.csproj" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="8.0.0" />
-    <PackageReference Include="Syncfusion.Blazor" Version="24.1.45" />
+    <PackageReference Include="Syncfusion.Blazor" Version="24.1.46" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Components\Sidebar\" />
+    <Folder Include="wwwroot\img\layout\" />
   </ItemGroup>
 
 </Project>
