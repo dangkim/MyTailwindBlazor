@@ -1,6 +1,7 @@
-export function addDocumentClickListener(element, dotnet) {
+export function addDocumentClickListener(bellElement, infoElement, dotnet) {
     var handler = function (e) {
-        if (!element.contains(e.target)) {
+        if (!bellElement.contains(e.target) && !infoElement.contains(e.target)) {
+            console.log("go to handler");
             dotnet.invokeMethodAsync('DocumentClickHandler');
             document.removeEventListener('click', handler);
         }

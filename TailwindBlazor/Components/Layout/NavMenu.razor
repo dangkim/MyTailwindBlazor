@@ -1,4 +1,5 @@
 ﻿@inject NavigationManager NavigationManager
+@inject IJSRuntime JS
 @rendermode InteractiveServer
 
 <nav class="sticky top-4 z-40 flex flex-row flex-wrap items-center justify-between rounded-xl bg-white/10 p-2 backdrop-blur-xl dark:bg-[#0b14374d]">
@@ -38,9 +39,14 @@
             <SfIcon Name="IconName.Justify" class="" />
         </span>
 
-        <WrapperDropdownBellComponent DropDownWrapperClick="OpenCloseBellWrapper" OpenWrapper="IsOpenedBellWrapper" @rendermode="InteractiveServer"></WrapperDropdownBellComponent>
-        @* <WrapperDropdownInfoComponent DropDownWrapperClick="OpenCloseInfoWrapper" OpenWrapper="IsOpenedInfoWrapper" @rendermode="InteractiveServer"></WrapperDropdownInfoComponent> *@
+        <div @ref="dropdownBellRef">
+            <WrapperDropdownBellComponent DropDownWrapperClick="OpenCloseBellWrapper" OpenWrapper="IsOpenedBellWrapper" @rendermode="InteractiveServer"></WrapperDropdownBellComponent>
+        </div>
         
+        <div @ref="dropdownInfoRef">
+            <WrapperDropdownInfoComponent DropDownWrapperClick="OpenCloseInfoWrapper" OpenWrapper="IsOpenedInfoWrapper" @rendermode="InteractiveServer"></WrapperDropdownInfoComponent>
+        </div>
+
         @* <div class="cursor-pointer text-gray-600"
         onClick={() =>
         {
@@ -113,21 +119,57 @@
 
     private bool IsOpenedBellWrapper { get; set; }
 
-    private void OpenCloseBellWrapper(bool isOpenedBellWrapper)
+    private bool Added { get; set; } = true;
+
+    private ElementReference dropdownInfoRef;
+    private ElementReference dropdownBellRef;
+    IJSObjectReference? jsModule;
+
+    [JSInvokable]
+    public async Task DocumentClickHandler()
+    {
+        IsOpenedInfoWrapper = false;
+
+        IsOpenedBellWrapper = false;
+
+        Added = false;
+
+        StateHasChanged();
+    }
+
+    private async Task OpenCloseBellWrapper(bool isOpenedBellWrapper)
     {
         IsOpenedBellWrapper = isOpenedBellWrapper;
 
         IsOpenedInfoWrapper = false;
 
-        StateHasChanged();
+        if (!Added)
+        {
+            await jsModule.InvokeVoidAsync("addDocumentClickListener", dropdownBellRef, dropdownInfoRef, DotNetObjectReference.Create(this));
+            Added = !Added;
+        }
     }
 
-    private void OpenCloseInfoWrapper(bool isOpenedInfoWrapper)
+    private async Task OpenCloseInfoWrapper(bool isOpenedInfoWrapper)
     {
         IsOpenedInfoWrapper = isOpenedInfoWrapper;
 
         IsOpenedBellWrapper = false;
 
-        StateHasChanged();
+        if (!Added)
+        {
+            await jsModule.InvokeVoidAsync("addDocumentClickListener", dropdownBellRef, dropdownInfoRef, DotNetObjectReference.Create(this));
+            Added = !Added;
+        }
     }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            jsModule ??= await JS.InvokeAsync<IJSObjectReference>("import", "./Components/Layout/Dropdown.razor.js");
+            await jsModule.InvokeVoidAsync("addDocumentClickListener", dropdownBellRef, dropdownInfoRef, DotNetObjectReference.Create(this));
+        }
+    }
+    
 }

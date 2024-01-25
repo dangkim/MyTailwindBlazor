@@ -1,4 +1,6 @@
-﻿<Dropdown WrapperId="wrapperInfo" OpenWrapper="@OpenWrapper" WrapperButtonClick="OpenCloseWrapper" ClassNames="py-2 top-6 -left-[250px] md:-left-[330px] w-max" Animation="origin-[75%_0%] md:origin-top-right transition-all duration-300 ease-in-out">
+﻿@inject IJSRuntime JS
+
+<Dropdown WrapperId="wrapperInfo" OpenWrapper="@OpenWrapper" WrapperButtonClick="OpenCloseWrapper" ClassNames="py-2 top-6 -left-[250px] md:-left-[330px] w-max" Animation="origin-[75%_0%] md:origin-top-right transition-all duration-300 ease-in-out">
     <WrapperButton>
         <span class="flex cursor-pointer text-xl text-gray-600 dark:text-white">
             <SfIcon Name="IconName.CircleInfo" class="" />
@@ -27,6 +29,7 @@
     </ChildContent>
 </Dropdown>
 
+
 @code {
     private string NavbarImageSrc = "/img/layout/Navbar.png";
 
@@ -38,7 +41,5 @@
     private async Task OpenCloseWrapper(bool isOpenedWrapper)
     {
         await DropDownWrapperClick.InvokeAsync(isOpenedWrapper);
-
-        StateHasChanged();
     }
 }
