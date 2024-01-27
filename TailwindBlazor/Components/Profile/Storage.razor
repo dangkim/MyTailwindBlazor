@@ -1,0 +1,31 @@
+﻿<Card Extra="w-full h-full p-4">
+      <div class="ml-auto">
+        <WrapperDropdownStorage @rendermode="InteractiveServer" />
+      </div>
+      <div class="mb-auto flex flex-col items-center justify-center">
+        <div class="mt-2 flex items-center justify-center rounded-full bg-lightPrimary p-[26px] text-5xl font-bold text-brand-500 dark:!bg-navy-700 dark:text-white">
+          <SfIcon Name="IconName.SubTotal" />
+        </div>
+        <p class="mb-px mt-3 text-2xl font-bold text-navy-700 dark:text-white">
+          Your storage
+        </p>
+        <p class="px-5 text-center text-base font-normal text-gray-600 md:!px-0 xl:!px-8">
+          Supervise your drive space in the easiest way
+        </p>
+      </div>
+
+      @* Progress bar *@
+      <div class="flex flex-col">
+        <div class="flex justify-between">
+          <p class="text-sm font-medium text-gray-600">25.6 GB</p>
+          <p class="text-sm font-medium text-gray-600">50 GB</p>
+        </div>
+        <div class="mt-2 flex h-3 w-full items-center rounded-full bg-lightPrimary dark:!bg-navy-700">
+          <span class="h-full w-1/2 rounded-full bg-brand-500 dark:!bg-white" />
+        </div>
+      </div>
+    </Card>
+
+@code {
+
+}
