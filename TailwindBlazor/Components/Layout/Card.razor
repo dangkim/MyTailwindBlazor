@@ -1,18 +1,24 @@
 ﻿@inherits ComponentBase
 
-<div class="@CardClasses">
+<div class="@GetClasses()">
     @ChildContent
 </div>
 
 @code {
     [Parameter] public string Variant { get; set; }
     [Parameter] public string Extra { get; set; }
+    [Parameter] public string CardClass { get; set; }
     [Parameter] public RenderFragment ChildContent { get; set; }
 
-    private string CardClasses => $"!z-5 relative flex flex-col rounded-[20px] bg-white bg-clip-border shadow-3xl {GetShadowClass()} dark:!bg-navy-800 dark:text-white {Extra}";
+    private string DefaultCardClass => $"!z-5 relative flex flex-col rounded-[20px] bg-white bg-clip-border shadow-3xl {GetShadowClass()} dark:!bg-navy-800 dark:text-white {Extra}";
 
     private string GetShadowClass()
     {
         return Variant == "default" ? "shadow-shadow-500 dark:shadow-none" : "shadow-shadow-100 dark:shadow-none";
+    }
+
+    private string GetClasses()
+    {
+        return string.IsNullOrEmpty(CardClass) ? DefaultCardClass : CardClass;
     }
 }

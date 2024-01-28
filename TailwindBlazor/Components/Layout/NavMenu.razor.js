@@ -12,4 +12,12 @@ export function addDocumentClickListener(bellElement, infoElement, avatarElement
 
 export function toggleDarkMode(darkMode) {
     document.body.classList.toggle('dark', darkMode);
+    console.log(document.body.classList.length);
+}
+
+export function isContainedDark() {
+    const isContained = document.body.classList.contains('dark');
+    console.log("isContained: " + isContained)
+    console.log(document.body.classList.value)
+    return isContained;
 }

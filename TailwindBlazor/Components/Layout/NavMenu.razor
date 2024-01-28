@@ -86,7 +86,7 @@
     {
         DarkMode = !DarkMode;
 
-        // Call JavaScript function to toggle dark mode
+        await JS.InvokeVoidAsync("localStorage.setItem", "darkmode", DarkMode.ToString());
         await jsModule.InvokeVoidAsync("toggleDarkMode", DarkMode);
     }
 
@@ -157,5 +157,4 @@
             await jsModule.InvokeVoidAsync("addDocumentClickListener", dropdownBellRef, dropdownInfoRef, dropdownAvatarRef, DotNetObjectReference.Create(this));
         }
     }
-
 }

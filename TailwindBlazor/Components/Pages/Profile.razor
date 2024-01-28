@@ -1,5 +1,8 @@
 ﻿@page "/profile"
 
+@inject IJSRuntime JS
+@rendermode InteractiveServer
+
 <div class="flex w-full flex-col gap-5 lg:gap-5">
     <div class="w-ful mt-3 flex h-fit flex-col gap-5 lg:grid lg:grid-cols-12">
         <div class="col-span-4 lg:!mb-0">
@@ -10,21 +13,39 @@
             <Storage />
         </div>
 
-       @*  <div class="z-0 col-span-5 lg:!mb-0">
+        <div class="z-0 col-span-5 lg:!mb-0">
             <Upload />
-        </div> *@
+        </div>
     </div>
 
     @* <div class="mb-4 grid h-full grid-cols-1 gap-5 lg:!grid-cols-12">
-        <div class="col-span-5 lg:col-span-6 lg:mb-0 3xl:col-span-4">
-            <Project />
-        </div>
-        <div class="col-span-5 lg:col-span-6 lg:mb-0 3xl:col-span-5">
-            <General />
-        </div>
+    <div class="col-span-5 lg:col-span-6 lg:mb-0 3xl:col-span-4">
+    <Project />
+    </div>
+    <div class="col-span-5 lg:col-span-6 lg:mb-0 3xl:col-span-5">
+    <General />
+    </div>
 
-        <div class="col-span-5 lg:col-span-12 lg:mb-0 3xl:!col-span-3">
-            <Notification />
-        </div>
+    <div class="col-span-5 lg:col-span-12 lg:mb-0 3xl:!col-span-3">
+    <Notification />
+    </div>
     </div> *@
 </div>
+
+@code {
+
+    IJSObjectReference? jsModule;
+
+    private bool DarkMode { get; set; }
+            
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            jsModule ??= await JS.InvokeAsync<IJSObjectReference>("import", "./Components/Pages/Profile.razor.js");
+            DarkMode = (await JS.InvokeAsync<string>("localStorage.getItem", "darkmode")) == "True";
+            // Call JavaScript function to toggle dark mode
+            await jsModule.InvokeVoidAsync("toggleDarkMode", DarkMode);
+        }
+    }
+}

@@ -1,8 +1,29 @@
 ﻿@page "/"
 
+@inject IJSRuntime JS
+@rendermode InteractiveServer
+
 <PageTitle>Home</PageTitle>
 
 <div class="text-3xl font-bold underline">
     Welcome to your new Tailwind CSS styled Blazor app.
 </div>
 <CheckTable/>
+
+@code
+{
+    IJSObjectReference? jsModule;
+
+    private bool DarkMode { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            jsModule ??= await JS.InvokeAsync<IJSObjectReference>("import", "./Components/Pages/Home.razor.js");
+            DarkMode = (await JS.InvokeAsync<string>("localStorage.getItem", "darkmode")) == "True";
+            // Call JavaScript function to toggle dark mode
+            await jsModule.InvokeVoidAsync("toggleDarkMode", DarkMode);
+        }
+    }
+}
