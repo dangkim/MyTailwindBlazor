@@ -1,3 +1,12 @@
 ﻿@tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+/*.e-grid {
+    @apply p-4 bg-gray-200 rounded-md shadow-md;
+}*/
+
+.e-grid .e-altrow {
+    @apply bg-gray-100;
+}

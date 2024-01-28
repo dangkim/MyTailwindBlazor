@@ -18,18 +18,11 @@
         </div>
     </div>
 
-    @* <div class="mb-4 grid h-full grid-cols-1 gap-5 lg:!grid-cols-12">
-    <div class="col-span-5 lg:col-span-6 lg:mb-0 3xl:col-span-4">
-    <Project />
+    <div class="mb-4 grid h-full grid-cols-1 gap-5 lg:!grid-cols-12">
+        <div class="col-span-5 lg:col-span-12 lg:mb-0 3xl:!col-span-3">
+            <History />
+        </div>
     </div>
-    <div class="col-span-5 lg:col-span-6 lg:mb-0 3xl:col-span-5">
-    <General />
-    </div>
-
-    <div class="col-span-5 lg:col-span-12 lg:mb-0 3xl:!col-span-3">
-    <Notification />
-    </div>
-    </div> *@
 </div>
 
 @code {
@@ -37,7 +30,7 @@
     IJSObjectReference? jsModule;
 
     private bool DarkMode { get; set; }
-            
+
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
