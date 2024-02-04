@@ -7,9 +7,23 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="NavigationHelper.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="Components\Layout\Dropdown.razor" />
+    <Content Remove="Components\Layout\SideBar.razor" />
+    <Content Remove="Components\Layout\SidebarLinks.razor" />
+    <Content Remove="Components\Layout\WrapperDropdownAvatarComponent.razor" />
+    <Content Remove="Components\Layout\WrapperDropdownBellComponent.razor" />
+    <Content Remove="Components\Layout\WrapperDropdownInfoComponent.razor" />
+    <Content Remove="Components\Profile\History.razor" />
+    <Content Remove="Components\Profile\WrapperDropdownStorage.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\TailwindBlazor.Client\TailwindBlazor.Client.csproj" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="8.0.0" />
-    <PackageReference Include="Syncfusion.Blazor" Version="24.1.46" />
   </ItemGroup>
 
   <ItemGroup>

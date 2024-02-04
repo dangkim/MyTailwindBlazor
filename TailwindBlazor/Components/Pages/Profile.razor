@@ -1,26 +1,26 @@
 ﻿@page "/profile"
 
 @inject IJSRuntime JS
-@rendermode InteractiveServer
+@* @ *@rendermode InteractiveServer
 
 <div class="flex w-full flex-col gap-5 lg:gap-5">
     <div class="w-ful mt-3 flex h-fit flex-col gap-5 lg:grid lg:grid-cols-12">
         <div class="col-span-4 lg:!mb-0">
-            <Banner />
+            <TailwindBlazor.Components.Profile.Banner />
         </div>
 
         <div class="col-span-3 lg:!mb-0">
-            <Storage />
+            <TailwindBlazor.Components.Profile.Storage />
         </div>
 
         <div class="z-0 col-span-5 lg:!mb-0">
-            <Upload />
+            <TailwindBlazor.Components.Profile.Upload />
         </div>
     </div>
 
     <div class="mb-4 grid h-full grid-cols-1 gap-5 lg:!grid-cols-12">
         <div class="col-span-5 lg:col-span-12 lg:mb-0 3xl:!col-span-3">
-            <History />
+            <TailwindBlazor.Client.Profile.History />
         </div>
     </div>
 </div>
@@ -31,14 +31,14 @@
 
     private bool DarkMode { get; set; }
 
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        if (firstRender)
-        {
-            jsModule ??= await JS.InvokeAsync<IJSObjectReference>("import", "./Components/Pages/Profile.razor.js");
-            DarkMode = (await JS.InvokeAsync<string>("localStorage.getItem", "darkmode")) == "True";
-            // Call JavaScript function to toggle dark mode
-            await jsModule.InvokeVoidAsync("toggleDarkMode", DarkMode);
-        }
-    }
+    // protected override async Task OnAfterRenderAsync(bool firstRender)
+    // {
+    //     if (firstRender)
+    //     {
+    //         jsModule ??= await JS.InvokeAsync<IJSObjectReference>("import", "./Components/Pages/Profile.razor.js");
+    //         DarkMode = (await JS.InvokeAsync<string>("localStorage.getItem", "darkmode")) == "True";
+    //         // Call JavaScript function to toggle dark mode
+    //         await jsModule.InvokeVoidAsync("toggleDarkMode", DarkMode);
+    //     }
+    // }
 }

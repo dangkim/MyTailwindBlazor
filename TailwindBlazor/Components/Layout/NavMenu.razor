@@ -1,6 +1,6 @@
 ﻿@inject NavigationManager NavigationManager
 @inject IJSRuntime JS
-@rendermode InteractiveServer
+@* @rendermode InteractiveServer *@
 
 <nav class="sticky top-4 z-40 flex flex-row flex-wrap items-center justify-between rounded-xl bg-white/10 p-2 backdrop-blur-xl dark:bg-[#0b14374d]">
     <div class="ml-[6px]">
@@ -40,11 +40,11 @@
         </span>
 
         <div @ref="dropdownBellRef">
-            <WrapperDropdownBellComponent DropDownWrapperClick="OpenCloseBellWrapper" OpenWrapper="IsOpenedBellWrapper" @rendermode="InteractiveServer"></WrapperDropdownBellComponent>
+            <WrapperDropdownBellComponent DropDownWrapperClick="OpenCloseBellWrapper" OpenWrapper="IsOpenedBellWrapper"></WrapperDropdownBellComponent>
         </div>
 
         <div @ref="dropdownInfoRef">
-            <WrapperDropdownInfoComponent DropDownWrapperClick="OpenCloseInfoWrapper" OpenWrapper="IsOpenedInfoWrapper" @rendermode="InteractiveServer"></WrapperDropdownInfoComponent>
+            <WrapperDropdownInfoComponent DropDownWrapperClick="OpenCloseInfoWrapper" OpenWrapper="IsOpenedInfoWrapper"></WrapperDropdownInfoComponent>
         </div>
 
         <div class="cursor-pointer text-gray-600" @onclick="ToggleDarkMode">
@@ -59,7 +59,7 @@
         </div>
 
         <div @ref="dropdownAvatarRef">
-            <WrapperDropdownAvatarComponent DropDownWrapperClick="OpenCloseAvatarWrapper" OpenWrapper="IsOpenedAvatarWrapper" @rendermode="InteractiveServer"></WrapperDropdownAvatarComponent>
+            <WrapperDropdownAvatarComponent DropDownWrapperClick="OpenCloseAvatarWrapper" OpenWrapper="IsOpenedAvatarWrapper"></WrapperDropdownAvatarComponent>
         </div>
     </div>
 </nav>

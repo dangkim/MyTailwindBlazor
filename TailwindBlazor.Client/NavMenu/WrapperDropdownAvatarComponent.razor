@@ -1,0 +1,53 @@
+﻿@inject IJSRuntime JS
+@rendermode InteractiveAuto
+
+<Dropdown WrapperId="wrapperAvatar" OpenWrapper="OpenWrapper" WrapperButtonClick="OpenCloseWrapper" ClassNames="py-2 top-8 -left-[180px] w-max">
+    <WrapperButton>
+        <img width="20" height="20" class="h-10 w-10 rounded-full" src="@AvatarSrc" alt="User Avatar" />
+    </WrapperButton>
+    <ChildContent>
+        <div class="flex h-48 w-56 flex-col justify-start rounded-[20px] bg-white bg-cover bg-no-repeat shadow-xl shadow-shadow-500 dark:!bg-navy-700 dark:text-white dark:shadow-none">
+            <div class="ml-4 mt-3">
+                <div class="flex items-center gap-2">
+                    <p class="text-sm font-bold text-navy-700 dark:text-white">
+                        👋 Hey, @UserName
+                    </p>
+                </div>
+            </div>
+            <div class="mt-3 h-px w-full bg-gray-200 dark:bg-white/20 " />
+
+            <div class="ml-4 mt-3 flex flex-col">
+                <a href=""
+                   class="text-sm text-gray-800 dark:text-white hover:dark:text-white">
+                    Profile Settings
+                </a>
+                <a href=""
+                   class="mt-3 text-sm text-gray-800 dark:text-white hover:dark:text-white">
+                    Newsletter Settings
+                </a>
+                <a href=""
+                   class="mt-3 text-sm font-medium text-red-500 hover:text-red-500">
+                    Log Out
+                </a>
+            </div>
+        </div>
+    </ChildContent>
+</Dropdown>
+
+
+@code {
+
+    private string AvatarSrc = "/img/avatars/avatar5.png";
+    private string UserName = "Chi Trung";
+
+    [Parameter] public bool OpenWrapper { get; set; }
+
+    [Parameter]
+    public EventCallback<bool> DropDownWrapperClick { get; set; }
+
+    private async Task OpenCloseWrapper(bool isOpenedWrapper)
+    {
+        await DropDownWrapperClick.InvokeAsync(isOpenedWrapper);
+    }
+
+}

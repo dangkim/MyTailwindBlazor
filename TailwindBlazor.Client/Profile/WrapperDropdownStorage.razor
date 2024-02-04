@@ -1,0 +1,71 @@
+﻿@inject IJSRuntime JS
+@rendermode InteractiveAuto
+
+<Dropdown WrapperId="wrapperStorage"
+          OpenWrapper="OpenWrapper"
+          WrapperButtonClick="OpenCloseWrapper"
+          Animation="origin-top-right transition-all duration-300 ease-in-out"
+          ClassNames="@DropdownClasses">
+    <WrapperButton>
+        <button class="@ButtonClasses">
+            @if (Vertical)
+            {
+                <SfIcon Name="IconName.MoreVertical" />
+            }
+            else
+            {
+                <SfIcon Name="IconName.MoreHorizontal" Class="h-6 w-6" />
+            }
+
+        </button>
+    </WrapperButton>
+    <ChildContent>
+        <div class="z-50 w-max rounded-xl bg-white px-4 py-3 text-sm shadow-xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
+            <p class="hover:text-black flex cursor-pointer items-center gap-2 text-gray-600 hover:font-medium">
+                <span><SfIcon Name="IconName.People" /></span>
+                Panel 1
+            </p>
+            <p class="hover:text-black mt-2 flex cursor-pointer items-center gap-2 pt-1 text-gray-600 hover:font-medium">
+                <span><SfIcon Name="IconName.PrintLayout" /></span>
+                Panel 2
+            </p>
+            <p class="hover:text-black mt-2 flex cursor-pointer items-center gap-2 pt-1 text-gray-600 hover:font-medium">
+                <span><SfIcon Name="IconName.TopTen" /></span>
+                Panel 3
+            </p>
+            <p class="hover:text-black mt-2 flex cursor-pointer items-center gap-2 pt-1 text-gray-600 hover:font-medium">
+                <span><SfIcon Name="IconName.Settings" /></span>
+                Panel 4
+            </p>
+        </div>
+    </ChildContent>
+</Dropdown>
+
+
+@code {
+
+    private bool Transparent { get; set; }
+    private bool Vertical { get; set; }
+    private bool OpenWrapper { get; set; }
+
+    [Parameter]
+    public EventCallback<bool> DropDownWrapperClick { get; set; }
+
+    private void OpenCloseWrapper(bool isOpenedWrapper)
+    {
+        OpenWrapper = !OpenWrapper;
+    }
+
+    private string ButtonClasses => $"flex items-center text-xl hover:cursor-pointer {GetButtonClass()}";
+    private string DropdownClasses => $"{(Transparent ? "top-8" : "top-11")} right-0 w-max";
+    private string Icon => Vertical ? "<SfIcon Name=\"IconName.MoreVertical\" />" : "<SfIcon Name=\"IconName.More\" Class=\"h-6 w-6\" />";
+
+    private string GetButtonClass()
+    {
+        return Transparent
+            ? "bg-none text-white hover:bg-none active:bg-none"
+            : Vertical
+                ? "bg-none text-navy-700 dark:text-white"
+                : "bg-lightPrimary p-2 text-brand-500 hover:bg-gray-100 dark:bg-navy-700 dark:text-white dark:hover:bg-white/20 dark:active:bg-white/10";
+    }
+}
