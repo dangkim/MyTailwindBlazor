@@ -1,6 +1,6 @@
 ﻿@inject NavigationManager NavigationManager
 @inject IJSRuntime JS
-@* @rendermode InteractiveAuto *@
+@rendermode InteractiveAuto
 
 <nav class="sticky top-4 z-40 flex flex-row flex-wrap items-center justify-between rounded-xl bg-white/10 p-2 backdrop-blur-xl dark:bg-[#0b14374d]">
     <div class="ml-[6px]">
@@ -146,6 +146,15 @@
         {
             await jsModule.InvokeVoidAsync("addDocumentClickListener", dropdownBellRef, dropdownInfoRef, dropdownAvatarRef, DotNetObjectReference.Create(this));
             Added = !Added;
+        }
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            jsModule ??= await JS.InvokeAsync<IJSObjectReference>("import", "./NavMenu/NavMenu.razor.js");
+            await jsModule.InvokeVoidAsync("addDocumentClickListener", dropdownBellRef, dropdownInfoRef, dropdownAvatarRef, DotNetObjectReference.Create(this));
         }
     }
 }

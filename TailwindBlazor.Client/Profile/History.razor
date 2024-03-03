@@ -1,24 +1,7 @@
 ﻿@using Syncfusion.Blazor.Grids
 @rendermode InteractiveAuto
 
-@* <Card extra="w-full h-full p-3"> *@
-<div>
-    <button onclick="returnArrayAsync(5)">
-        Trigger .NET static method
-    </button>
-</div>
-<div class="row">
-    @* <SfGrid DataSource="@Orders" AllowFiltering="true" AllowPaging="true">
-    <GridFilterSettings Type="Syncfusion.Blazor.Grids.FilterType.CheckBox"></GridFilterSettings>
-    <GridPageSettings PageCount="5"></GridPageSettings>
-    <GridColumns>
-    <GridColumn Field=@nameof(Order.OrderID) HeaderText="Order ID" TextAlign="TextAlign.Right" Width="120"></GridColumn>
-    <GridColumn Field=@nameof(Order.CustomerID) HeaderText="Customer ID" Width="120"></GridColumn>
-    <GridColumn Field=@nameof(Order.Freight) TextAlign="TextAlign.Right" Format="C2"></GridColumn>
-    <GridColumn Field=@nameof(Order.OrderDate) HeaderText="Ship City"></GridColumn>
-    <GridColumn Field=@nameof(Order.ShipCountry) HeaderText="Ship Country" Width="150"></GridColumn>
-    </GridColumns>
-    </SfGrid> *@
+@* <div class="mt-8 overflow-x-scroll xl:overflow-x-hidden">
     <SfGrid ID="Grid" DataSource="@Orders" @ref="Grid" AllowPaging="true" AllowFiltering="true"
             AllowSorting="true" Toolbar="@(new List<string>() { "Add", "Edit", "Delete", "Cancel", "Update", "Search"})" Height="315">
         <GridEditSettings AllowAdding="true" AllowEditing="true" AllowDeleting="true" Mode="Syncfusion.Blazor.Grids.EditMode.Normal"></GridEditSettings>
@@ -42,8 +25,7 @@
             </GridColumn>
         </GridColumns>
     </SfGrid>
-</div>
-@* </Card> *@
+</div> *@
 
 @code {
     public List<Order>? Orders { get; set; }

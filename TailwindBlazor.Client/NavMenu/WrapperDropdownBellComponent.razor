@@ -52,6 +52,8 @@
 
 @code {
 
+    IJSObjectReference? jsModule;
+
     [Parameter] public bool OpenWrapper { get; set; }
 
     [Parameter]
@@ -61,5 +63,4 @@
     {
         await DropDownWrapperClick.InvokeAsync(isOpenedWrapper);
     }
-
 }

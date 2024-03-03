@@ -1,7 +1,7 @@
 ﻿@page "/profile"
 
 @inject IJSRuntime JS
-@* @ *@rendermode InteractiveServer
+@* @rendermode InteractiveServer *@
 
 <div class="flex w-full flex-col gap-5 lg:gap-5">
     <div class="w-ful mt-3 flex h-fit flex-col gap-5 lg:grid lg:grid-cols-12">
@@ -20,7 +20,9 @@
 
     <div class="mb-4 grid h-full grid-cols-1 gap-5 lg:!grid-cols-12">
         <div class="col-span-5 lg:col-span-12 lg:mb-0 3xl:!col-span-3">
-            <TailwindBlazor.Client.Profile.History />
+            <Card Extra="w-full h-full sm:overflow-auto px-6">
+                <TailwindBlazor.Client.Profile.History />
+            </Card>
         </div>
     </div>
 </div>

@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <Content Remove="Components\Layout\Dropdown.razor" />
+    <Content Remove="Components\Layout\NavMenu.razor" />
     <Content Remove="Components\Layout\SideBar.razor" />
     <Content Remove="Components\Layout\SidebarLinks.razor" />
     <Content Remove="Components\Layout\WrapperDropdownAvatarComponent.razor" />
@@ -19,6 +20,10 @@
     <Content Remove="Components\Layout\WrapperDropdownInfoComponent.razor" />
     <Content Remove="Components\Profile\History.razor" />
     <Content Remove="Components\Profile\WrapperDropdownStorage.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Components\Layout\NavMenu.razor.js" />
   </ItemGroup>
 
   <ItemGroup>

@@ -754,6 +754,10 @@ video {
   margin-top: 58px;
 }
 
+.mt-8 {
+  margin-top: 2rem;
+}
+
 .block {
   display: block;
 }
@@ -998,6 +1002,10 @@ video {
   overflow: hidden;
 }
 
+.overflow-x-scroll {
+  overflow-x: scroll;
+}
+
 .rounded {
   border-radius: 0.25rem;
 }
@@ -1185,6 +1193,11 @@ video {
 .py-\[11px\] {
   padding-top: 11px;
   padding-bottom: 11px;
+}
+
+.px-6 {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
 }
 
 .\!pt-\[10px\] {
@@ -1442,10 +1455,9 @@ video {
     @apply p-4 bg-gray-200 rounded-md shadow-md;
 }*/
 
-.e-grid .e-altrow {
-  --tw-bg-opacity: 1;
-  background-color: rgb(238 240 246 / var(--tw-bg-opacity));
-}
+/*.e-grid .e-altrow {
+    @apply bg-gray-100;
+}*/
 
 .placeholder\:\!text-gray-400::-moz-placeholder {
   --tw-text-opacity: 1 !important;
@@ -1644,6 +1656,10 @@ video {
   .sm\:flex-nowrap {
     flex-wrap: nowrap;
   }
+
+  .sm\:overflow-auto {
+    overflow: auto;
+  }
 }
 
 @media (min-width: 768px) {
@@ -1782,6 +1798,10 @@ video {
 
   .xl\:gap-2 {
     gap: 0.5rem;
+  }
+
+  .xl\:overflow-x-hidden {
+    overflow-x: hidden;
   }
 
   .xl\:\!px-8 {
